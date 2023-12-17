@@ -27,7 +27,7 @@ public class CountryController {
     }
 
     // ----- 詳細画面 -----
-    @GetMapping(value = { "/detail", "/detail/{code}/" })
+    @GetMapping(value = { "/detail", "/detail/{code}/"})
     public String getCountry(@PathVariable(name = "code", required = false) String code, Model model) {
         // codeが指定されていたら検索結果、無ければ空のクラスを設定
         Country country = code != null ? service.getCountry(code) : new Country();
@@ -48,12 +48,24 @@ public class CountryController {
         return "redirect:/country/list";
     }
 
-    // ----- 削除画面 -----
+    /* ----- 削除画面 -----  下でまとめました。
     @GetMapping("/delete")
     public String deleteCountryForm(Model model) {
         // country/delete.htmlに画面遷移
         return "country/delete";
+    }*/
+
+
+
+    //課題追加分
+    @GetMapping(value ={"/delete","/delete/{code}/"})
+    public String deleteCountryKadai(@PathVariable(name = "code", required = false) String code, Model model) {
+
+        model.addAttribute("code", code);
+        return "country/delete";
     }
+
+
 
     // ----- 削除 -----
     @PostMapping("/delete")
@@ -66,15 +78,13 @@ public class CountryController {
     }
 
 
-/*
-    @GetMapping("/delete/{pass}/")
-    public String getPass(@PathVariable(name = "pass", required = false) String pass, Model model) {
-        model.addAttribute("pass",pass);
-        return "delete";
-
-    }*/
 }
 
 
 //HTTPリクエストを受け付けるクラス
+
 //リクエスト→コントローラー→サービス→リポジトリ→エンティティ→コントローラー→テンプレート
+
+/*@RequestParamはクエリパラメーターやフォーム(form)パラメーターの取得に使用され、
+  @PathVariableはURI内のパス変数の取得に使用されます。どちらを使用するかは、使用ケースによる。
+*/

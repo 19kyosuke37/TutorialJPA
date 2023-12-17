@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Entity//エンティティです宣言
 @Table(name="country") //使用するデータベースのテーブル名
 public class Country {
-    @Id//主キーです宣言ｓ
+    @Id//主キーです宣言
     private String code;
     private String name;
     private int population;
