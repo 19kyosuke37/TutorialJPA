@@ -17,8 +17,14 @@
             <td th:text="${data.name}"></td>
             <td th:text="${data.population}"></td>
 
-            <td><a th:href="@{/country/detail/${data.code}/}">詳細</a></td>
-            <td><a th:href="@{/country/delete/${data.code}/}">削除</a></td>
+            <td><a th:href="@{/country/detail/{code}(code=${data.code})}">詳細</a></td>
+            <td><a th:href="@{/country/delete/{code}(code=${data.code})}">削除</a></td>
+
+            <!--/の位置が間違っていた
+            訂正前--@{/country/delete/{code}(code=${data.code})/}
+            訂正後--@{/country/delete/{code}/(code=${data.code})}
+            後ろの(code=${data.code})この部分は、プレースホルダー{code}へ値を代入するための内部的な処理で
+            実際のＵＲＬはここまでだから、後半のプレースホルダの定義部(プレースホルダ名=値)はリンクに入れる必要がない-->
 
         </tr>
     </table>
